@@ -3,13 +3,13 @@ using UnityEngine;
 public class PipeMovement : MonoBehaviour
 {
 
-    public float moveSpeed = 5f;
+    public float moveSpeed = 5;
     public float deadZone = -10;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        LogicScript.logic.onGameOver.AddListener(Pausing);
     }
 
     // Update is called once per frame
@@ -21,5 +21,10 @@ public class PipeMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Pausing()
+    {
+        moveSpeed = 0;
     }
 }

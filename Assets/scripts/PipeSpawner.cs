@@ -9,6 +9,7 @@ public class PipeSpawner : MonoBehaviour
     private float timer = 0;
 
     public float heightoffset = 10;
+
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,16 +20,20 @@ public class PipeSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer < spawnRate)
+        if (LogicScript.logic.isPlaying)
         {
-            timer += Time.deltaTime;
-        }
-        else
-        {
-            spawnPipe();
-            timer = 0;
+            if (timer < spawnRate)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                spawnPipe();
+                timer = 0;
+            }
         }
     }
+
 
     void spawnPipe()
     {
