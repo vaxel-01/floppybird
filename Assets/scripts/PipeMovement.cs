@@ -9,7 +9,7 @@ public class PipeMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        LogicScript.logic.onGameOver.AddListener(Pausing);
+        LogicScript.logic.onGameOver.AddListener(Resetting);
     }
 
     // Update is called once per frame
@@ -23,8 +23,9 @@ public class PipeMovement : MonoBehaviour
         }
     }
 
-    public void Pausing()
+    public void Resetting() //Removes all pipes from game
     {
-        moveSpeed = 0;
+        Destroy(gameObject);
     }
+
 }

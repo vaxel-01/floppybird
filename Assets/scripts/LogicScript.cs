@@ -18,7 +18,9 @@ public class LogicScript : MonoBehaviour
     #endregion
 
     public int playerScore = 0;
+    public int highestScore = -0;
 
+    public string endingType = "none";
     public bool isPlaying = false;
     public UnityEvent onGamePlay = new UnityEvent();
     public UnityEvent onGameOver = new UnityEvent();
@@ -30,6 +32,7 @@ public class LogicScript : MonoBehaviour
     public void StartGame()
     {
         onGamePlay.Invoke();
+        endingType = "none";
         isPlaying = true;
         player.SetActive(true);
         pipeSpawner.SetActive(true);
@@ -39,6 +42,14 @@ public class LogicScript : MonoBehaviour
     {
         onGameOver.Invoke();
         isPlaying = false;
+        pipeSpawner.SetActive(false);
+        player.SetActive(false);
+
+        if (playerScore > highestScore)
+        {
+            highestScore = playerScore;
+        }
+        playerScore = 0;
     }
 
     public void addScore(int scoreToAdd)
@@ -49,7 +60,7 @@ public class LogicScript : MonoBehaviour
 
     public void restartGame() //temp
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 
 }
